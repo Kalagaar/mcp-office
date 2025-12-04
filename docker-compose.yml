@@ -1,0 +1,14 @@
+services:
+  mcp-office:
+    build: .
+    container_name: mcp-office
+    restart: unless-stopped
+    ports:
+      - "8958:8958"
+    env_file:
+      - .env
+    volumes:
+      - ./output:/app/output
+      - ./custom_templates:/app/custom_templates
+      - ./config:/app/config
+    command: ["python", "-m", "main"]
