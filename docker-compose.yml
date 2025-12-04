@@ -11,4 +11,4 @@ services:
       - ./output:/app/output
       - ./custom_templates:/app/custom_templates
       - ./config:/app/config
-    command: ["python", "-m", "main"]
+    command: ["python", "-m", "app.main"]

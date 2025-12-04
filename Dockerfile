@@ -32,4 +32,4 @@ RUN mkdir -p output custom_templates config
 # Expose MCP HTTP port
 EXPOSE 8958
 
-CMD ["python", "-m", "main"]
+CMD ["python", "-m", "app.main"]
