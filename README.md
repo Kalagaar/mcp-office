@@ -70,17 +70,21 @@ app/
 
 ---
 ## Environment Variables
-Copy `.env.example` to `.env` and set the following (minimal list shown):
+1. Copy `.env.example` to `.env` (the example file enumerates every supported setting and includes inline comments).
+2. Pick your desired `UPLOAD_STRATEGY` (`LOCAL`, `S3`, `MINIO`, `GCS`, `AZURE`).
+3. Fill in only the variables that apply to that strategy and restart the MCP server.
 
-| Variable | Description |
+**Local strategy** works without extra variables—artifacts are written under `output/` (or `/app/output` in Docker). Cloud strategies require the credentials listed below.
+
+| Variable(s) | Description |
 | --- | --- |
 | `DEBUG` | `true/false` to enable verbose logging |
-| `UPLOAD_STRATEGY` | One of `LOCAL`, `S3`, `MINIO`, `GCS`, `AZURE` |
+| `UPLOAD_STRATEGY` | Selects the upload backend |
 | `SIGNED_URL_EXPIRES_IN` | Expiration (seconds) for presigned links |
-| `AWS_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET` | S3 credentials |
-| `MINIO_ENDPOINT`, `MINIO_ACCESS_KEY`, `MINIO_SECRET_KEY`, `MINIO_BUCKET`, `MINIO_REGION`, `MINIO_VERIFY_SSL`, `MINIO_PATH_STYLE` | MinIO settings |
-| `GCS_BUCKET`, `GCS_CREDENTIALS_PATH` | GCS bucket name and JSON credentials path |
-| `AZURE_STORAGE_ACCOUNT_NAME`, `AZURE_STORAGE_ACCOUNT_KEY`, `AZURE_CONTAINER`, `AZURE_BLOB_ENDPOINT` | Azure Blob settings |
+| `AWS_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET` | AWS S3 credentials and destination bucket |
+| `MINIO_ENDPOINT`, `MINIO_ACCESS_KEY`, `MINIO_SECRET_KEY`, `MINIO_BUCKET`, `MINIO_REGION`, `MINIO_VERIFY_SSL`, `MINIO_PATH_STYLE` | MinIO endpoint plus auth and connection toggles |
+| `GCS_BUCKET`, `GCS_CREDENTIALS_PATH` | GCS bucket and path to the service-account JSON file (inside the container use `/app/config/...`) |
+| `AZURE_STORAGE_ACCOUNT_NAME`, `AZURE_STORAGE_ACCOUNT_KEY`, `AZURE_CONTAINER`, `AZURE_BLOB_ENDPOINT` | Azure Blob credentials; `AZURE_BLOB_ENDPOINT` is optional when using the default cloud hostname |
 
 > For precise validation logic see `app/config.py`.
 
