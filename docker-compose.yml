@@ -4,7 +4,7 @@ services:
     container_name: mcp-office
     restart: unless-stopped
     ports:
-      - "8958:8958"
+      - "8900:8900"
     env_file:
       - .env
     volumes:

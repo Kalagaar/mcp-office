@@ -30,6 +30,6 @@ COPY . .
 RUN mkdir -p output custom_templates config
 
 # Expose MCP HTTP port
-EXPOSE 8958
+EXPOSE 8900
 
-CMD ["python", "-m", "app.main"]
+CMD ["python", "-m", "app.main", "--transport", "streamable-http", "--port", "8900"]

@@ -103,7 +103,7 @@ mkdir -p output custom_templates config
 Run the server locally:
 ```bash
 python -m app.main
-# MCP endpoint exposed at http://localhost:8958/mcp (streamable-http transport)
+# MCP endpoint exposed at http://localhost:8900/mcp (streamable-http transport)
 ```
 
 ---
@@ -112,7 +112,7 @@ python -m app.main
 ```bash
 docker build -t mcp-office .
 docker run --rm -it \
-  -p 8958:8958 \
+  -p 8900:8900 \
   --env-file .env \
   -v ${PWD}/output:/app/output \
   -v ${PWD}/custom_templates:/app/custom_templates \
@@ -163,5 +163,5 @@ All tools use `app.storage.upload_file(file, suffix)`, which:
 ---
 ## MCP Runtime
 - Transport: `streamable-http`
-- Default address: `http://0.0.0.0:8958/mcp`
+- Default address: `http://0.0.0.0:8900/mcp`
 - Configure your MCP-compatible client/assistant with this endpoint and protocol.

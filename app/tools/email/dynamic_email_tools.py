@@ -17,7 +17,7 @@ from typing import Any, Dict, Optional, Literal
 import yaml
 import pystache
 from pydantic import Field, create_model
-from fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP
 import logging
 
 from app.storage import upload_file
