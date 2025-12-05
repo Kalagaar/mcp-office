@@ -100,10 +100,15 @@ cp .env.example .env               # adjust values to your environment
 mkdir -p output custom_templates config
 ```
 
-Run the server locally:
+Run the server locally (defaults to streamable-http on port 8900):
 ```bash
 python -m app.main
-# MCP endpoint exposed at http://localhost:8900/mcp (streamable-http transport)
+# MCP endpoint exposed at http://localhost:8900/mcp
+```
+
+Need STDIO transport instead?
+```bash
+python -m app.main --transport stdio
 ```
 
 ---
@@ -162,6 +167,7 @@ All tools use `app.storage.upload_file(file, suffix)`, which:
 
 ---
 ## MCP Runtime
-- Transport: `streamable-http`
-- Default address: `http://0.0.0.0:8900/mcp`
-- Configure your MCP-compatible client/assistant with this endpoint and protocol.
+- Supported transports: `streamable-http` (default) or `stdio`
+- Default HTTP address: `http://0.0.0.0:8900/mcp`
+- SSE is not supported when using the official `mcp.server.fastmcp` SDK
+- Configure your MCP-compatible client/assistant with the appropriate endpoint and protocol
